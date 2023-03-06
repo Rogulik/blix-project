@@ -123,10 +123,10 @@ function App() {
                 Port:
               </label>
               <input
-                type="text"
+                type="number"
                 id="port"
                 name="port"
-                className="input-text w-[50px] self-start justify-self-start "
+                className="input-text w-[70px] self-start justify-self-start "
               />
               <div className="ml-4">
                 <input
@@ -135,7 +135,7 @@ function App() {
                   id="useSSL"
                   name="useSSL"
                   checked={useSSL}
-                  className="mr-3"
+                  className="mr-3 accent-red-500"
                 />
                 <label className="label-input" htmlFor="useSSL">
                   Use SSL
