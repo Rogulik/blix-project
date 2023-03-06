@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .input-text {
+    @apply w-[350px] outline bg-white mb-3 ml-5 p-1 placeholder:text-gray-300  rounded-sm outline-1 outline-gray-400 focus:outline-red-500 focus:outline-4;
+  }
+  .label-input {
+    @apply w-[150px];
+  }
+}
