@@ -8,6 +8,7 @@ function App() {
   const [emailErrorMessage, setEmailErrorMessage] = useState<
     string | undefined
   >();
+  const [useSSL, setUseSSL] = useState(true);
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const accountType = e.currentTarget.accountType.value;
@@ -44,10 +45,16 @@ function App() {
   };
   return (
     <div className="flex justify-center items-center min-w-screen min-h-screen">
-      <form onSubmit={(e) => onSubmit(e)}>
-        <div>
-          <label htmlFor="accountType">Account Type:</label>
+      <form
+        onSubmit={(e) => onSubmit(e)}
+        className="flex flex-col justify-center items-center"
+      >
+        <div className="flex justify-center items-center  mb-3">
+          <label htmlFor="accountType" className="label-input">
+            Account Type:
+          </label>
           <select
+            className="input-text"
             name="accountType"
             id="accountType"
             defaultValue="advanced"
@@ -58,18 +65,24 @@ function App() {
             <option value="manual">Manual</option>
           </select>
         </div>
-        <label htmlFor="userName">User name:</label>
-        <input
-          id="userName"
-          name="userName"
-          placeholder="name@example.com"
-          type="email"
-          required
-          className="w-[350px] outline bg-white mb-3 ml-5 p-1 placeholder:text-gray-300  rounded-sm border-1 border-gray-600 outline-1 outline-gray-400 focus:outline-red-500 focus:outline-4"
-        />
-        <p>{emailErrorMessage}</p>
-        <div>
-          <label htmlFor="password">Password:</label>
+        <div className="flex justify-center items-center  mb-3">
+          <label htmlFor="userName" className="label-input">
+            User name:
+          </label>
+          <input
+            id="userName"
+            name="userName"
+            placeholder="name@example.com"
+            type="email"
+            required
+            className="input-text"
+          />
+          <p>{emailErrorMessage}</p>
+        </div>
+        <div className="flex justify-center items-center  mb-3">
+          <label htmlFor="password" className="label-input">
+            Password:
+          </label>
           <input
             type="password"
             id="password"
@@ -81,8 +94,10 @@ function App() {
         </div>
         {accountType === "advanced" && (
           <>
-            <div>
-              <label htmlFor="serverAddress">Server Address:</label>
+            <div className="flex justify-center items-center  mb-3">
+              <label htmlFor="serverAddress" className="label-input">
+                Server Address:
+              </label>
               <input
                 type="text"
                 id="serverAddress"
@@ -91,8 +106,10 @@ function App() {
                 className="input-text"
               />
             </div>
-            <div>
-              <label htmlFor="serverPath">Server Path:</label>
+            <div className="flex justify-center items-center  mb-3">
+              <label htmlFor="serverPath" className="label-input">
+                Server Path:
+              </label>
               <input
                 type="text"
                 id="serverPath"
@@ -101,22 +118,40 @@ function App() {
                 className="input-text"
               />
             </div>
-            <div>
-              <label htmlFor="port" className="label-input">
+            <div className="flex justify-start items-center  mb-3 w-[500px]">
+              <label htmlFor="port" className="label-input -ml-2">
                 Port:
               </label>
-              <input type="text" id="port" name="port" className="input-text" />
+              <input
+                type="text"
+                id="port"
+                name="port"
+                className="input-text w-[50px] self-start justify-self-start "
+              />
+              <div className="ml-4">
+                <input
+                  type="checkbox"
+                  onChange={(e) => setUseSSL((prevState) => !prevState)}
+                  id="useSSL"
+                  name="useSSL"
+                  checked={useSSL}
+                  className="mr-3"
+                />
+                <label className="label-input" htmlFor="useSSL">
+                  Use SSL
+                </label>
+              </div>
             </div>
-            <div>
-              <label className="label-input" htmlFor="useSSL">
-                Use SSL:
-              </label>
-              <input type="checkbox" id="useSSL" name="useSSL" checked />
-            </div>
+            <div className="flex justify-center items-center"></div>
           </>
         )}
 
-        <button type="submit">Submit</button>
+        <button
+          type="submit"
+          className="p-2 mt-3 bg-red-600 text-white rounded-md"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );
